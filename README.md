@@ -3,6 +3,7 @@
 A starter for React with Typescript with the blazing fast Vite, strong Vitest framework and all static code testing with Eslint and formatting with Prettier and EditorConfig.
 
 ## Requirements
+
 - [Node.js](https://nodejs.org/) v18 (recommended to install via nvm)
 
 ## Installation & run
@@ -24,22 +25,27 @@ yarn dev
 ```
 
 ## Test
+
 ```
 yarn test
 ```
+
 To see on Vitest UI
+
 ```
 yarn test --ui
 ```
+
 To run with coverage reports (the results will output to `/coverage/index.html`)
+
 ```
 yarn coverage
 ```
 
-
 ## Troubleshooting
 
 Error:
+
 ```
 Cannot find module 'node:path'
 ```
@@ -49,6 +55,7 @@ Solution: Use Node.js v18
 ---
 
 Error:
+
 ```
 Command failed: node /path/to/project/node_modules/esbuild/bin/esbuild --version dyld: Symbol not found: \_SecTrustEvaluateWithError
 ```
