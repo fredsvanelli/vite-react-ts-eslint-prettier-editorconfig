@@ -1,10 +1,6 @@
-import { memo, ReactElement } from 'react'
+import { memo, PropsWithChildren, ReactElement } from 'react'
 
-interface IBaseComponentProps {
-  children?: React.ReactNode
-}
-
-const BaseComponent: React.FC<IBaseComponentProps> = ({ children }) =>
+const BaseComponent: React.FC<PropsWithChildren> = ({ children }) =>
   children as ReactElement
 
 export default memo(BaseComponent)

@@ -1,6 +1,7 @@
-import React, { CSSProperties, memo, useMemo } from 'react'
+import { CSSProperties, PropsWithChildren, memo, useMemo } from 'react'
 
 interface IBoxProps {
+  as?: keyof JSX.IntrinsicElements
   style?: CSSProperties
   className?: string
   display?: CSSProperties['display']
@@ -26,10 +27,10 @@ interface IBoxProps {
   height?: CSSProperties['height']
   minHeight?: CSSProperties['minHeight']
   maxHeight?: CSSProperties['maxHeight']
-  children: React.ReactNode
 }
 
-const Box: React.FC<IBoxProps> = ({
+const Box: React.FC<PropsWithChildren<IBoxProps>> = ({
+  as: Component = 'div',
   children,
   style = {},
   className,
@@ -56,67 +57,62 @@ const Box: React.FC<IBoxProps> = ({
   height,
   minHeight,
   maxHeight,
-}) => {
-  const containerStyle: CSSProperties = useMemo(
-    () => ({
-      display,
-      flexDirection: direction,
-      alignItems,
-      alignSelf,
-      justifyContent,
-      justifySelf,
-      gap,
-      margin,
-      marginTop,
-      marginRight,
-      marginBottom,
-      marginLeft,
-      padding,
-      paddingTop,
-      paddingRight,
-      paddingBottom,
-      paddingLeft,
-      width,
-      minWidth,
-      maxWidth,
-      height,
-      minHeight,
-      maxHeight,
-      ...style,
-    }),
-    [
-      style,
-      display,
-      direction,
-      alignItems,
-      alignSelf,
-      justifyContent,
-      justifySelf,
-      gap,
-      margin,
-      marginTop,
-      marginRight,
-      marginBottom,
-      marginLeft,
-      padding,
-      paddingTop,
-      paddingRight,
-      paddingBottom,
-      paddingLeft,
-      width,
-      minWidth,
-      maxWidth,
-      height,
-      minHeight,
-      maxHeight,
-    ],
-  )
-
-  return (
-    <div className={className} style={containerStyle}>
-      {children}
-    </div>
-  )
-}
+}) => (
+  <Component
+    className={className}
+    style={useMemo(
+      () => ({
+        display,
+        flexDirection: direction,
+        alignItems,
+        alignSelf,
+        justifyContent,
+        justifySelf,
+        gap,
+        ...(margin
+          ? { margin }
+          : { marginTop, marginRight, marginBottom, marginLeft }),
+        ...(padding
+          ? { padding }
+          : { paddingTop, paddingRight, paddingBottom, paddingLeft }),
+        width,
+        minWidth,
+        maxWidth,
+        height,
+        minHeight,
+        maxHeight,
+        ...style,
+      }),
+      [
+        style,
+        display,
+        direction,
+        alignItems,
+        alignSelf,
+        justifyContent,
+        justifySelf,
+        gap,
+        margin,
+        marginTop,
+        marginRight,
+        marginBottom,
+        marginLeft,
+        padding,
+        paddingTop,
+        paddingRight,
+        paddingBottom,
+        paddingLeft,
+        width,
+        minWidth,
+        maxWidth,
+        height,
+        minHeight,
+        maxHeight,
+      ],
+    )}
+  >
+    {children}
+  </Component>
+)
 
 export default memo(Box)

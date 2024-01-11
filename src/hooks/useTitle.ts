@@ -1,14 +1,19 @@
 import { useCallback, useMemo } from 'react'
 
-import Config from 'Config'
+import { useConfig } from 'config'
 
 type UseTitleType = () => (title?: string | undefined) => void
 
 const useTitle: UseTitleType = () => {
-  const setTitle = useCallback((title?: string) => {
-    const appName = Config.app.name ?? `My React App v${Config.app.version}`
-    document.title = title ? `${title} | ${appName}` : appName
-  }, [])
+  const { app } = useConfig()
+
+  const setTitle = useCallback(
+    (title?: string) => {
+      const appName = app.name ?? `My React App v${app.version}`
+      document.title = title ? `${title} | ${appName}` : appName
+    },
+    [app.name, app.version],
+  )
 
   return useMemo(() => setTitle, [setTitle])
 }

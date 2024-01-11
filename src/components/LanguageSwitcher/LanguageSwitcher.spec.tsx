@@ -31,8 +31,11 @@ describe('LanguageSwitcher', () => {
     const { getByTestId } = render(<LanguageSwitcher />)
 
     const buttonEn = getByTestId('language-switcher-en-button')
+    const buttonPtBR = getByTestId('language-switcher-pt-br-button')
     await userEvent.click(buttonEn)
+    await userEvent.click(buttonPtBR)
 
     expect(mockedChangeLanguage).toHaveBeenCalledWith('en')
+    expect(mockedChangeLanguage).toHaveBeenCalledWith('pt-BR')
   })
 })

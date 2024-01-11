@@ -1,9 +1,13 @@
 import { memo, useCallback } from 'react'
 
+import { useConfig } from 'config'
 import { useTranslation } from 'react-i18next'
+
+import Box from 'components/Box'
 
 const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation()
+  const { i18n: i18nConfig } = useConfig()
 
   const handleChangeLanguage = useCallback(
     (lng: string) => i18n.changeLanguage(lng),
@@ -11,23 +15,21 @@ const LanguageSwitcher: React.FC = () => {
   )
 
   return (
-    <div>
-      <button
-        data-testid="language-switcher-en-button"
-        type="button"
-        onClick={() => handleChangeLanguage('en')}
-      >
-        en
-      </button>
-      <button
-        data-testid="language-switcher-pt-br-button"
-        type="button"
-        onClick={() => handleChangeLanguage('pt-BR')}
-      >
-        pt-BR
-      </button>
-      <p>{i18n.language}</p>
-    </div>
+    <>
+      <Box gap={5} direction="row">
+        {i18nConfig.supportedLanguages.map((lng) => (
+          <button
+            key={lng}
+            data-testid={`language-switcher-${lng.toLocaleLowerCase()}-button`}
+            type="button"
+            onClick={() => handleChangeLanguage(lng)}
+          >
+            {lng}
+          </button>
+        ))}
+      </Box>
+      <p>language: {i18n.language}</p>
+    </>
   )
 }
 

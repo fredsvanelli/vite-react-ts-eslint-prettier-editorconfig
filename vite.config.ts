@@ -11,6 +11,11 @@ export default defineConfig(({ mode }) => ({
   // https://vitest.dev/guide
   test: {
     environment: 'jsdom',
+    setupFiles: './setupTest.ts',
+    coverage: {
+      provider: 'istanbul',
+      reporter: ['text', 'html'],
+    },
   },
   // https://vitejs.dev/plugins/
   plugins: [

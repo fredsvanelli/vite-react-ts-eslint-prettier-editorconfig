@@ -1,0 +1,9 @@
+{
+  "home": {
+    "head-title": "Inicio",
+    "title": "Hola mundo"
+  },
+  "not-found": {
+    "title": "Página no encontrada"
+  }
+}
