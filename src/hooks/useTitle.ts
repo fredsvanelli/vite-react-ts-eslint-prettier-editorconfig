@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 
-import { useConfig } from 'config'
+import { useConfig } from 'config/config'
 
 type UseTitleType = () => (title?: string | undefined) => void
 
