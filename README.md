@@ -7,7 +7,7 @@ A starter for React with Typescript with the blazing fast Vite, strong Vitest fr
 
 ## Installation & run
 
-1. Install [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) extensions for VS Code. **Do not install the Prettier extension**
+1. Install [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) extensions for VS Code. **Do not install the Prettier extension** (Prettier will be managed by ESLint)
 
 2. Clone the repo and run:
 
